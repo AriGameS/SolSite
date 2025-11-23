@@ -7,13 +7,13 @@ export default function Page() {
 
   return (
     <main className="hero">
-      {/* Top-left logo */}
+      {/* Top-left / top-center logo */}
       <div className="logoTop">
         <img src={LOGO_IMG} alt="Solmate logo" className="logoImg noDrag" />
         <span className="brandText noClick">Solmate</span>
       </div>
 
-      {/* LEFT CONTENT PART */}
+      {/* LEFT CONTENT */}
       <div className="contentLeft">
         <h1 className="headline">
           <span className="headlineTop">Music based</span>
@@ -58,8 +58,8 @@ export default function Page() {
           width: 100%;
           background: #141413;
           display: grid;
-          grid-template-columns: 1fr 1fr; /* balanced columns */
-          column-gap: 120px; /* middle gap */
+          grid-template-columns: 1fr 1fr; /* desktop: 2 columns */
+          column-gap: 120px;
           padding: 40px 70px;
           position: relative;
           font-family: var(--font-poppins);
@@ -68,7 +68,7 @@ export default function Page() {
           align-items: center;
         }
 
-        /* LOGO TOP LEFT */
+        /* LOGO */
         .logoTop {
           position: absolute;
           top: 20px;
@@ -92,7 +92,7 @@ export default function Page() {
           color: #faf9f5;
         }
 
-        /* LEFT SIDE */
+        /* LEFT SIDE (desktop) */
         .contentLeft {
           max-width: 520px;
           justify-self: end;
@@ -108,8 +108,7 @@ export default function Page() {
           line-height: 1.05;
           margin: 0 0 36px;
           font-weight: 700;
-          /* even more letter spacing */
-          letter-spacing: 0.02em;
+          letter-spacing: 0.02em; /* loosened */
           text-align: center;
         }
 
@@ -117,15 +116,13 @@ export default function Page() {
           white-space: nowrap;
         }
 
-        /* BUTTON */
         .storeButton {
           margin-top: 4px;
           display: inline-flex;
           border-radius: 999px;
           background: #ffffff;
-          /* a little longer now */
           padding: 10px 48px;
-          min-width: 380px;
+          min-width: 380px; /* long pill */
           justify-content: center;
           box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
           text-decoration: none;
@@ -173,7 +170,7 @@ export default function Page() {
           text-underline-offset: 3px;
         }
 
-        /* RIGHT SIDE (IPHONE) */
+        /* RIGHT SIDE (desktop phone) */
         .contentRight {
           display: flex;
           justify-content: flex-start;
@@ -198,36 +195,55 @@ export default function Page() {
           user-select: none;
         }
 
+        /* 📱 MOBILE / IPHONE LAYOUT */
         @media (max-width: 900px) {
           .hero {
-            grid-template-columns: 1fr;
+            /* switch from grid to vertical stack */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 60px 22px 40px;
             column-gap: 0;
-            padding: 28px 22px 40px;
+          }
+
+          .logoTop {
+            /* visually top-centered on narrow screens */
+            left: 50%;
+            transform: translateX(-50%);
           }
 
           .contentLeft {
+            max-width: 100%;
             justify-self: center;
-            transform: none;
+            align-items: center;
+            transform: none; /* reset translateY */
+            margin-top: 40px;
           }
 
           .headline {
-            font-size: clamp(28px, 7vw, 38px);
-            margin-bottom: 28px;
-            letter-spacing: 0.015em;
+            font-size: clamp(28px, 7vw, 34px);
+            margin-bottom: 32px;
+            letter-spacing: 0.02em;
+          }
+
+          .storeButton {
+            min-width: 80vw;
+            max-width: 380px;
           }
 
           .contentRight {
             justify-content: center;
-            margin-top: 40px;
+            margin-top: 56px;
           }
 
           .iphone {
-            filter: none;
+            width: 70vw;
+            max-width: 320px;
           }
 
           .logoTop {
-            top: 18px;
-            left: 18px;
+            top: 20px;
           }
         }
       `}</style>
